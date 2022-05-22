@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _firePerSecond;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
-    
+    [SerializeField] Vector3 _offset;
+
     [Header("Player Health")]
     [SerializeField] private int health = 10;
 
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
         _timeToShoot += Time.deltaTime;
         if (Input.GetButton("Fire1") && (_timeToShoot >= 1f / _firePerSecond))
         {
-            GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(_bulletPrefab, transform.position + _offset, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
             _timeToShoot = 0f;
         }
@@ -100,14 +101,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-            if (health <= 0)
+        if (health <= 0)
             {
                 Destroy(gameObject);
             }
             DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
             health -= damageDealer.GetDamage();
             damageDealer.Hit();
-
     }
 }
