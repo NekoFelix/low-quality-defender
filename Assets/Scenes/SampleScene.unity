@@ -172,7 +172,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -243,7 +242,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -7.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -327,7 +325,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -394,7 +391,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -438,7 +434,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -533,7 +528,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -597,7 +591,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: 25, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -678,18 +671,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
-      propertyPath: _offset.y
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
-      propertyPath: _bulletSpeed
-      value: 21.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
-      propertyPath: _firePerSecond
-      value: 11.56
-      objectReference: {fileID: 0}
     - target: {fileID: 5832152361806504494, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -736,14 +717,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832152361806504528, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5832152361806504530, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5832152361806504530, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
-      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

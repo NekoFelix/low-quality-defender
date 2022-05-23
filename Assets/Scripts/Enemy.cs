@@ -60,16 +60,15 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "Bullet01")
+    { 
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
         {
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
-            DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
-            health -= damageDealer.GetDamage();
-            damageDealer.Hit(); 
+            Destroy(gameObject);
         }
+
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5832152361806504529}
   - component: {fileID: 5832152361806504530}
   - component: {fileID: 4553316192660040860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   isMovePlayerByAxis: 0
   offset: 0.35
   speedPlayer: 100
-  _firePerSecond: 4
-  _bulletSpeed: 15
+  _firePerSecond: 11.56
+  _bulletSpeed: 21.12
   _bulletPrefab: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
   health: 20
