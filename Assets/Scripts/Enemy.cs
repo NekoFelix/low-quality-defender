@@ -11,14 +11,19 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Health")]
     [SerializeField] private int health = 10;
+    
+    [Header("Explosion")]
+    [SerializeField]GameObject _explosion;
 
     WaveConfig waveConfig;
+    
     private List<Transform> _wayPoints;
     int _indexWayPointsList = 0;
     private float _timeToShoot = 2f;
 
     private void Start()
     {
+        
         _wayPoints = waveConfig.GetWayPoints();
         transform.position = _wayPoints[_indexWayPointsList].transform.position;
     }
@@ -67,6 +72,7 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
