@@ -5,15 +5,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Shoot")]
-    [SerializeField][Range(1, 10)] private float _shotFrequency;
-    [SerializeField][Range(1, 20)] private float _bulletSpeed;
+    [SerializeField] AudioClip _shootSFX;
+    [SerializeField] [Range(0, 1)] private float _volumeShootSFX = 0.2f;
+    [SerializeField] [Range(1, 10)] private float _shotFrequency;
+    [SerializeField] [Range(1, 20)] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
 
     [Header("Enemy Health")]
     [SerializeField] private int health = 10;
-    
+
     [Header("Explosion")]
-    [SerializeField]GameObject _explosion;
+    [SerializeField] AudioClip _explosionSFX;
+    [SerializeField] [Range(0, 1)] private float _volumeExplosionSFX = 0.3f;
+    [SerializeField] GameObject _explosion;
 
     WaveConfig waveConfig;
     
@@ -58,6 +62,7 @@ public class Enemy : MonoBehaviour
         _timeToShoot -= Time.deltaTime;
         if (_timeToShoot <= 0f)
         {
+            AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
             GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed * -1);
             _timeToShoot = UnityEngine.Random.Range(_shotFrequency * 0.1f, _shotFrequency);
@@ -72,6 +77,7 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

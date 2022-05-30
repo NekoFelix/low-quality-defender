@@ -8,12 +8,19 @@ public class Player : MonoBehaviour
     [SerializeField] float speedPlayer = 50f;
 
     [Header("Player Shoot")]
+    [SerializeField] AudioClip _shootSFX;
+    [SerializeField] [Range(0, 1)] private float _volumeShootSFX = 0.5f;
     [SerializeField] private float _firePerSecond;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
     
     [Header("Player Health")]
     [SerializeField] private int health = 10;
+
+    [Header("Explosion")]
+    [SerializeField] AudioClip _explosionSFX;
+    [SerializeField] [Range(0,1)] private float _volumeExplosionSFX = 0.75f;
+    [SerializeField] GameObject _explosion;
 
     private float _screenHeightInUnits;
     private float _screenWidthInUnits;
@@ -60,6 +67,7 @@ public class Player : MonoBehaviour
         _timeToShoot += Time.deltaTime;
         if (Input.GetButton("Fire1") && (_timeToShoot >= 1f / _firePerSecond))
         {
+            AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
             GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
             _timeToShoot = 0f;
@@ -106,6 +114,8 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
+            Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
