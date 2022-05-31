@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2182207032037837958}
   - component: {fileID: 2182207032037837959}
-  - component: {fileID: 2182207032037837957}
   - component: {fileID: 286868440349659141}
+  - component: {fileID: 5697448166387148065}
   m_Layer: 8
-  m_Name: Enemy 2
+  m_Name: Enemy05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2182207032037837956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.073, y: 3.535, z: 1}
-  m_LocalScale: {x: 0.18013282, y: 0.18013282, z: 0.18013282}
+  m_LocalScale: {x: 0.6680076, y: 0.6680076, z: 0.6680076}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,42 +75,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fd1d9e7e8fad2db48a1ad8493f7aa1e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c28ba7509e383544887443db87648cc2, type: 3}
   m_Color: {r: 0.7071029, g: 0.7169812, b: 0.5309719, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.14, y: 2.41}
+  m_Size: {x: 0.91, y: 1.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &2182207032037837957
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2182207032037837956}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.5729946, y: 2.4320364}
-  - {x: -0.6741675, y: 2.4262013}
-  - {x: -2.1885355, y: -2.2259693}
-  - {x: 2.2089527, y: -2.2029724}
-  - {x: 0.5735022, y: 2.457653}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &286868440349659141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +107,19 @@ MonoBehaviour:
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 0.6
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}
+--- !u!70 &5697448166387148065
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182207032037837956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.011513111, y: 0.023040773}
+  m_Size: {x: 1.0594573, y: 0.5932599}
+  m_Direction: 1
