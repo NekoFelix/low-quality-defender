@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class CursorEnabler : MonoBehaviour
 {
+    [SerializeField] bool _showCursor = true;
     void Start()
     {
-        Cursor.visible = false; 
+        Cursor.visible = _showCursor; 
     }
 }
