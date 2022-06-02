@@ -147,7 +147,7 @@ MonoBehaviour:
   _firePerSecond: 11.56
   _bulletSpeed: 21.12
   _bulletPrefab: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
-  health: 9
+  health: 5
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 1
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}

@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            FindObjectOfType<SceneLoadManager>().LoadGameOverScene();
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
