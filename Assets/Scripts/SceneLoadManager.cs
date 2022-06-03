@@ -10,6 +10,7 @@ public class SceneLoadManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<ScoreState>().ResetScore();
     }
 
     public void LoadGameOverScene()

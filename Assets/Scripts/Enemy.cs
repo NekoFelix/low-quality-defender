@@ -13,28 +13,30 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Health")]
     [SerializeField] private int health = 10;
+    [SerializeField] private int _reward = 10;
 
     [Header("Explosion")]
     [SerializeField] AudioClip _explosionSFX;
     [SerializeField] [Range(0, 1)] private float _volumeExplosionSFX = 0.3f;
     [SerializeField] GameObject _explosion;
 
-    WaveConfig waveConfig;
-    
+    WaveConfig _waveConfig;
+    ScoreState _scoreState;
+
     private List<Transform> _wayPoints;
     int _indexWayPointsList = 0;
     private float _timeToShoot = 2f;
 
     private void Start()
     {
-        
-        _wayPoints = waveConfig.GetWayPoints();
+        _scoreState = FindObjectOfType<ScoreState>();
+        _wayPoints = _waveConfig.GetWayPoints();
         transform.position = _wayPoints[_indexWayPointsList].transform.position;
     }
 
     public void SetWaveConfig(WaveConfig waveConfig)
     {
-        this.waveConfig = waveConfig;
+        this._waveConfig = waveConfig;
     }
 
     private void Update()
@@ -43,7 +45,7 @@ public class Enemy : MonoBehaviour
         if (_indexWayPointsList <= _wayPoints.Count - 1)
         {
             var _targetPos = _wayPoints[_indexWayPointsList].transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, _targetPos, waveConfig.GetEnemySpeed() * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _targetPos, _waveConfig.GetEnemySpeed() * Time.deltaTime);
             if (transform.position == _targetPos)
             {
                 _indexWayPointsList++;
@@ -54,8 +56,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
 
     private void Shoot()
     {
@@ -77,10 +77,10 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            _scoreState.AddToScore(_reward);
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-
     }
 }
