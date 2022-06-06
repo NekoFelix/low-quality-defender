@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _firePerSecond;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
-    
+
     [Header("Player Health")]
-    [SerializeField] private int health = 10;
+    [SerializeField] Image[] _healthImages;
+    [SerializeField] Sprite _fullHeart;
+    [SerializeField] Sprite _emptyHeart;
+    [SerializeField] private int _heartSlots = 5;
+    [SerializeField] private int _health = 4;
 
     [Header("Explosion")]
     [SerializeField] AudioClip _explosionSFX;
@@ -33,6 +38,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        HealthUpdater();
         SetUpMoveBoundaries();
     }
 
@@ -50,7 +56,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Shoot();
-
         if (isMovePlayerByAxis)
         {
             MovePlayerByAxis();
@@ -59,7 +64,35 @@ public class Player : MonoBehaviour
         {
             MovePlayerByMousePos();
         }
+    }
 
+    private void HealthUpdater()
+    {
+        if (_health > _heartSlots)
+        {
+            _health = _heartSlots;
+        }
+
+        for (int i = 0; i < _healthImages.Length; i++)
+        {
+            if (i < _heartSlots)
+            {
+                _healthImages[i].enabled = true;
+            }
+            else
+            {
+                _healthImages[i].enabled = false;
+            }
+
+            if (i < _health)
+            {
+                _healthImages[i].sprite = _fullHeart;
+            }
+            else
+            {
+                _healthImages[i].sprite = _emptyHeart;
+            }
+        }
     }
 
     private void Shoot()
@@ -110,9 +143,10 @@ public class Player : MonoBehaviour
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
-        health -= damageDealer.GetDamage();
+        _health -= damageDealer.GetDamage();
+        HealthUpdater();
         damageDealer.Hit();
-        if (health <= 0)
+        if (_health <= 0)
         {
             FindObjectOfType<SceneLoadManager>().LoadGameOverScene();
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
