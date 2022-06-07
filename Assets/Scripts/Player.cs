@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,10 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite _emptyHeart;
     [SerializeField] private int _heartSlots = 5;
     [SerializeField] private int _health = 4;
+    
+    [Header("Bonus Drop")]
+    [SerializeField] private float _bonusTime = 10f;
+    [SerializeField] private int _lucky = 1;
 
     [Header("Explosion")]
     [SerializeField] AudioClip _explosionSFX;
@@ -35,6 +40,7 @@ public class Player : MonoBehaviour
     private float _maxY;
 
     private float _timeToShoot;
+    private float _timeEndBonus;
 
     private void Start()
     {
@@ -55,6 +61,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        EndTimeOfLuck(_bonusTime);
         Shoot();
         if (isMovePlayerByAxis)
         {
@@ -64,6 +71,21 @@ public class Player : MonoBehaviour
         {
             MovePlayerByMousePos();
         }
+    }
+
+    private void EndTimeOfLuck(float _bonusTime)
+    {
+        _timeEndBonus += Time.deltaTime;
+        if (_timeEndBonus >= _bonusTime)
+        {
+            _lucky = 1;
+            _timeEndBonus = 0;
+        }
+    }
+
+    public int GetLucky()
+    {
+        return _lucky;
     }
 
     private void HealthUpdater()
@@ -137,15 +159,39 @@ public class Player : MonoBehaviour
     {
         return Input.mousePosition.x / Screen.width * _screenWidthInUnits;
     }
-
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GetDamage(collision);
+        GetBonusHeart(collision);
+        GetBonusLucky(collision);
+    }
+
+    private void GetBonusLucky(Collider2D collision)
+    {
+        BonusLucky bonusLucky = collision.gameObject.GetComponent<BonusLucky>();
+        if (!bonusLucky) { return; }
+        _lucky += bonusLucky.GetLucky();
+        bonusLucky.Hit();
+    }
+
+    private void GetBonusHeart(Collider2D collision)
+    {
+        BonusHeart bonusHeart = collision.gameObject.GetComponent<BonusHeart>();
+        if (!bonusHeart) { return; }
+        _health += bonusHeart.GetHealth();
+        bonusHeart.Hit();
+        HealthUpdater();
+    }
+
+    private void GetDamage(Collider2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
         _health -= damageDealer.GetDamage();
-        HealthUpdater();
         damageDealer.Hit();
+        HealthUpdater();
         if (_health <= 0)
         {
             FindObjectOfType<SceneLoadManager>().LoadGameOverScene();

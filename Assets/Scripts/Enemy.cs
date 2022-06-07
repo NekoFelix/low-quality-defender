@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,9 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Shoot")]
     [SerializeField] AudioClip _shootSFX;
-    [SerializeField] [Range(0, 1)] private float _volumeShootSFX = 0.2f;
-    [SerializeField] [Range(1, 10)] private float _shotFrequency;
-    [SerializeField] [Range(1, 20)] private float _bulletSpeed;
+    [SerializeField][Range(0, 1)] private float _volumeShootSFX = 0.2f;
+    [SerializeField][Range(1, 10)] private float _shotFrequency;
+    [SerializeField][Range(1, 20)] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
 
     [Header("Enemy Health")]
@@ -17,8 +18,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Explosion")]
     [SerializeField] AudioClip _explosionSFX;
-    [SerializeField] [Range(0, 1)] private float _volumeExplosionSFX = 0.3f;
+    [SerializeField][Range(0, 1)] private float _volumeExplosionSFX = 0.3f;
     [SerializeField] GameObject _explosion;
+
+    [Header("Drop")]
+    [SerializeField] GameObject _bonusHeartPrefab;
+    [SerializeField] GameObject _bonusLuckyPrefab;
 
     WaveConfig _waveConfig;
     ScoreState _scoreState;
@@ -77,10 +82,34 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            DropBonus(FindObjectOfType<Player>().GetLucky() * UnityEngine.Random.Range(0,2));
             _scoreState.AddToScore(_reward);
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+    }
+
+    //===========================ÄÎÐÀÁÎÒÀÒÜ
+
+    private void DropBonus(int dropChance)
+    {
+        if (dropChance == 0)
+        {
+            Debug.Log("Drop Chance: " + dropChance);
+            return;
+        }
+        else if (dropChance > 0 && dropChance < 2)
+        {
+            Debug.Log("Drop Chance: " + dropChance);
+            GameObject _bonusLucky = Instantiate(_bonusLuckyPrefab, transform.position, Quaternion.identity) as GameObject;
+            return;
+        }
+        else if (dropChance >= 2)
+        {
+            Debug.Log("Drop Chance: " + dropChance);
+            GameObject _bonusHeart = Instantiate(_bonusHeartPrefab, transform.position, Quaternion.identity) as GameObject;
+            return;
         }
     }
 }

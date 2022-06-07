@@ -132,9 +132,12 @@ MonoBehaviour:
   _bulletSpeed: 8.4
   _bulletPrefab: {fileID: 8942744385409085121, guid: 927894284ee486246a15fca88a2f6709, type: 3}
   health: 10
+  _reward: 10
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 0.3
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}
+  _bonusHeartPrefab: {fileID: 7216940344704259570, guid: 8e978796d25ad784cb0c6a90535fc37e, type: 3}
+  _bonusLuckyPrefab: {fileID: 6428102474630642750, guid: fc344c92c4d16a64c80a03879a4a0351, type: 3}
 --- !u!50 &7159933510529792678
 Rigidbody2D:
   serializedVersion: 4
