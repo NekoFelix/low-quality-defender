@@ -22,8 +22,10 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite _emptyHeart;
     [SerializeField] private int _heartSlots = 5;
     [SerializeField] private int _health = 4;
-    
+
     [Header("Bonus Drop")]
+    [SerializeField] AudioClip _getBonusSFX;
+    [SerializeField][Range(0, 1)] private float _volumeGetBonusSFX = 0.75f;
     [SerializeField] private float _bonusTime = 10f;
     [SerializeField] private int _lucky = 1;
 
@@ -173,6 +175,7 @@ public class Player : MonoBehaviour
         BonusLucky bonusLucky = collision.gameObject.GetComponent<BonusLucky>();
         if (!bonusLucky) { return; }
         _lucky += bonusLucky.GetLucky();
+        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
         bonusLucky.Hit();
     }
 
@@ -182,6 +185,7 @@ public class Player : MonoBehaviour
         if (!bonusHeart) { return; }
         _health += bonusHeart.GetHealth();
         bonusHeart.Hit();
+        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
         HealthUpdater();
     }
 

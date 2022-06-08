@@ -834,7 +834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749823168561788940, guid: dc65ab50f410bd743857c2bcb0d09661, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2749823168561788940, guid: dc65ab50f410bd743857c2bcb0d09661, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1094,7 +1094,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4733708962093316370, guid: 9a85a859f6686d44da96e1e6ed58bc8d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4733708962093316370, guid: 9a85a859f6686d44da96e1e6ed58bc8d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1181,6 +1181,10 @@ PrefabInstance:
       propertyPath: _bulletSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
+      propertyPath: _getBonusSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4671a38478818f948b817d05aa6ce4a6, type: 3}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _firePerSecond
       value: 10

@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField][Range(1, 10)] private float _shotFrequency;
     [SerializeField][Range(1, 20)] private float _bulletSpeed;
     [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] GameObject _secondBulletPrefab;
+    [SerializeField] Vector3 _bulletOffset;
+    [SerializeField] Vector3 _secondBulletOffset;
+    [SerializeField] private bool _isDoubleShot;
 
     [Header("Enemy Health")]
     [SerializeField] private int health = 10;
@@ -68,7 +72,13 @@ public class Enemy : MonoBehaviour
         if (_timeToShoot <= 0f)
         {
             AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
-            GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+            if (_isDoubleShot)
+            {
+                AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
+                GameObject secondBullet = Instantiate(_bulletPrefab, transform.position + _secondBulletOffset, Quaternion.identity) as GameObject;
+                secondBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed * -1);
+            }
+            GameObject bullet = Instantiate(_bulletPrefab, transform.position + _bulletOffset, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed * -1);
             _timeToShoot = UnityEngine.Random.Range(_shotFrequency * 0.1f, _shotFrequency);
         }
