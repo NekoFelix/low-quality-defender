@@ -14,7 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float _volumeShootSFX = 0.5f;
     [SerializeField] private float _firePerSecond;
     [SerializeField] private float _bulletSpeed;
+    [SerializeField] private bool _isDoubleShoot = false;
+    [SerializeField] private Vector3 _firstBulletOffset;
+    [SerializeField] private Vector3 _secondBulletOffset;
     [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] GameObject _secondBulletPrefab;
 
     [Header("Player Health")]
     [SerializeField] Image[] _healthImages;
@@ -124,8 +128,14 @@ public class Player : MonoBehaviour
         _timeToShoot += Time.deltaTime;
         if (Input.GetButton("Fire1") && (_timeToShoot >= 1f / _firePerSecond))
         {
+            if (_isDoubleShoot)
+            {
+                AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
+                GameObject secondBullet = Instantiate(_secondBulletPrefab, transform.position + _secondBulletOffset, Quaternion.identity) as GameObject;
+                secondBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
+            }
             AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
-            GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(_bulletPrefab, transform.position + _firstBulletOffset, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
             _timeToShoot = 0f;
         }
