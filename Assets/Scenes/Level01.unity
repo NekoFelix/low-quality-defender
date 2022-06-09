@@ -1254,7 +1254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8635579831865988921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.85, y: 1.48, z: 1}
+  m_LocalPosition: {x: 0.79, y: 8.69, z: 1}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1298,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _bulletSpeed
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _getBonusSFX
@@ -1306,11 +1306,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4671a38478818f948b817d05aa6ce4a6, type: 3}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _firePerSecond
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _isDoubleShoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: hearths.Array.size
@@ -1322,11 +1322,11 @@ PrefabInstance:
       objectReference: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _firstBulletOffset.x
-      value: -0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _secondBulletOffset.x
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: hearths.Array.data[0]
@@ -1418,7 +1418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216940345017532296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.92, y: 1.52, z: 1}
+  m_LocalPosition: {x: 5.92, y: 8.7, z: 1}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1520,6 +1520,7 @@ GameObject:
   - component: {fileID: 673044675007852351}
   - component: {fileID: 8501322902620772780}
   - component: {fileID: 6947418139225191207}
+  - component: {fileID: 8501322902620772781}
   m_Layer: 11
   m_Name: BonusSpeed
   m_TagString: Untagged
@@ -1692,6 +1693,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8501322902620772781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216940345017532296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022c99bc253bb474dbde5de024a76224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
 --- !u!1 &8635579831865988921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1718,7 @@ GameObject:
   - component: {fileID: 1920545048481335182}
   - component: {fileID: 7352903989027451165}
   - component: {fileID: 8330015430031530902}
+  - component: {fileID: 8635579831865988922}
   m_Layer: 11
   m_Name: BonusDouble
   m_TagString: Untagged
@@ -1711,6 +1726,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8635579831865988922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635579831865988921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec520d065f958143bfae1cc091030b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8679359434252620022
 PrefabInstance:
   m_ObjectHideFlags: 0

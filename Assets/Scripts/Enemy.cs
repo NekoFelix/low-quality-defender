@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //===========================днпюанрюрэ
+    //===========================оепепюанрюрэ онкмнярэч============
 
     private void DropBonus(int dropChance)
     {

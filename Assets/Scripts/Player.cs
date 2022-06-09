@@ -47,9 +47,15 @@ public class Player : MonoBehaviour
 
     private float _timeToShoot;
     private float _timeEndBonus;
+    private float _startBulletSpeed;
+    private float _startFirePerSecond;
+    private int _startLucky;
 
     private void Start()
     {
+        _startBulletSpeed = _bulletSpeed;
+        _startFirePerSecond = _firePerSecond;
+        _startLucky = _lucky;
         HealthUpdater();
         SetUpMoveBoundaries();
     }
@@ -67,7 +73,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        EndTimeOfLuck(_bonusTime);
+        EndTimeOfBonus(_bonusTime);
         Shoot();
         if (isMovePlayerByAxis)
         {
@@ -78,17 +84,22 @@ public class Player : MonoBehaviour
             MovePlayerByMousePos();
         }
     }
-
-    private void EndTimeOfLuck(float _bonusTime)
+    //=======================ÏÎËÍÀß ÕÓÉÍß ïåðåäåëàòü=====
+    private void EndTimeOfBonus(float _bonusTime)       //
     {
-        _timeEndBonus += Time.deltaTime;
+        _timeEndBonus += Time.deltaTime;                //
         if (_timeEndBonus >= _bonusTime)
         {
-            _lucky = 1;
+            _firstBulletOffset = new Vector3(0,0,0);    //
+            _secondBulletOffset = new Vector3(0,0,0);
+            _isDoubleShoot = false;                     //
+            _firePerSecond = _startFirePerSecond;
+            _bulletSpeed = _startBulletSpeed;
+            _lucky = _startLucky;
             _timeEndBonus = 0;
         }
     }
-
+    //====================================================
     public int GetLucky()
     {
         return _lucky;
@@ -178,6 +189,28 @@ public class Player : MonoBehaviour
         GetDamage(collision);
         GetBonusHeart(collision);
         GetBonusLucky(collision);
+        GetBonusSpeed(collision);
+        GetBonusDouble(collision);
+    }
+
+    private void GetBonusDouble(Collider2D collision)
+    {
+        BonusDouble bonusDouble = collision.gameObject.GetComponent<BonusDouble>();
+        if (!bonusDouble) { return; }
+        _isDoubleShoot = bonusDouble.SetActiveBonusDouble();
+        _firstBulletOffset = bonusDouble.GetFirstOffset();
+        _secondBulletOffset = bonusDouble.GetSecondOffset();
+        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
+        bonusDouble.Hit();
+    }
+
+    private void GetBonusSpeed(Collider2D collision)
+    {
+        BonusSpeed bonusSpeed = collision.gameObject.GetComponent<BonusSpeed>();
+        if (!bonusSpeed) { return; }
+        _bulletSpeed *= bonusSpeed.GetSpeed();
+        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
+        bonusSpeed.Hit();
     }
 
     private void GetBonusLucky(Collider2D collision)
