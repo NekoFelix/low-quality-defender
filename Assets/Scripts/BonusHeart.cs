@@ -5,14 +5,15 @@ using UnityEngine;
 public class BonusHeart : MonoBehaviour
 {
     [SerializeField] private int _health = 1;
+    [SerializeField] AudioClip _bonusSFX;
+    [SerializeField][Range(0, 1)] private float _volumeBonusSFX = 0.75f;
 
-    public int GetHealth()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return _health;
-    }
-
-    public void Hit()
-    {
+        var player = collision.gameObject.GetComponent<Player>();
+        if (!player) { return; }
+        player.SetHealth(player.GetHealth() + _health);
+        AudioSource.PlayClipAtPoint(_bonusSFX, transform.position, _volumeBonusSFX);
         Destroy(gameObject);
     }
 }

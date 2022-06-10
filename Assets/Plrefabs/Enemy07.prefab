@@ -144,7 +144,7 @@ MonoBehaviour:
   _shotFrequency: 2.8
   _bulletSpeed: 8.4
   _bulletPrefab: {fileID: 8942744385409085121, guid: 927894284ee486246a15fca88a2f6709, type: 3}
-  _secondBulletPrefab: {fileID: 0}
+  _secondBulletPrefab: {fileID: 8942744385409085121, guid: 927894284ee486246a15fca88a2f6709, type: 3}
   _bulletOffset: {x: -0.54, y: 0, z: 0}
   _secondBulletOffset: {x: 0.54, y: 0, z: 0}
   _isDoubleShot: 1
@@ -154,7 +154,9 @@ MonoBehaviour:
   _volumeExplosionSFX: 0.3
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}
   _bonusHeartPrefab: {fileID: 7216940344704259570, guid: 8e978796d25ad784cb0c6a90535fc37e, type: 3}
-  _bonusLuckyPrefab: {fileID: 6428102474630642750, guid: fc344c92c4d16a64c80a03879a4a0351, type: 3}
+  _bonusDoublePrefab: {fileID: 3402704180971957666, guid: 294ab46238fdbf945bcc364ff5950ca9, type: 3}
+  _bonusSpeedPrefab: {fileID: 1430141477810996309, guid: 2449c06a6ae07ef4084fccbdced1cb46, type: 3}
+  _bonusShieldPrefab: {fileID: 1683355336676313126, guid: e1fee0631aaa94c4fb1077587edaf063, type: 3}
 --- !u!50 &1584144138423594357
 Rigidbody2D:
   serializedVersion: 4

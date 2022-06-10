@@ -5,18 +5,15 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [Header("Player Move")]
-    [SerializeField] private bool isMovePlayerByAxis = true;
-    [SerializeField] private float offset;
-    [SerializeField] float speedPlayer = 50f;
+    [SerializeField] private bool _isMovePlayerByAxis = true;
+    [SerializeField] private float _offset;
+    [SerializeField] private float _speedPlayer = 50f;
 
     [Header("Player Shoot")]
     [SerializeField] AudioClip _shootSFX;
-    [SerializeField] [Range(0, 1)] private float _volumeShootSFX = 0.5f;
+    [SerializeField][Range(0, 1)] private float _volumeShootSFX = 0.5f;
     [SerializeField] private float _firePerSecond;
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private bool _isDoubleShoot = false;
-    [SerializeField] private Vector3 _firstBulletOffset;
-    [SerializeField] private Vector3 _secondBulletOffset;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] GameObject _secondBulletPrefab;
 
@@ -27,16 +24,16 @@ public class Player : MonoBehaviour
     [SerializeField] private int _heartSlots = 5;
     [SerializeField] private int _health = 4;
 
-    [Header("Bonus Drop")]
-    [SerializeField] AudioClip _getBonusSFX;
-    [SerializeField][Range(0, 1)] private float _volumeGetBonusSFX = 0.75f;
-    [SerializeField] private float _bonusTime = 10f;
-    [SerializeField] private int _lucky = 1;
+    [Header("Player Skins")]
+    [SerializeField] Sprite _commonPlayerSkin;
+    [SerializeField] Sprite _shieldedPlayerSkin;
 
     [Header("Explosion")]
     [SerializeField] AudioClip _explosionSFX;
     [SerializeField] [Range(0,1)] private float _volumeExplosionSFX = 0.75f;
     [SerializeField] GameObject _explosion;
+
+    private bool _isShieldActive;
 
     private float _screenHeightInUnits;
     private float _screenWidthInUnits;
@@ -44,38 +41,25 @@ public class Player : MonoBehaviour
     private float _maxX;
     private float _minY;
     private float _maxY;
-
+    
+    private float _bonusTimer = 0;
+    private float _bonusTime;
     private float _timeToShoot;
-    private float _timeEndBonus;
-    private float _startBulletSpeed;
-    private float _startFirePerSecond;
-    private int _startLucky;
+    private bool _isDoubleShoot = false;
+    private Vector3 _firstBulletOffset;
+    private Vector3 _secondBulletOffset;
 
     private void Start()
     {
-        _startBulletSpeed = _bulletSpeed;
-        _startFirePerSecond = _firePerSecond;
-        _startLucky = _lucky;
         HealthUpdater();
         SetUpMoveBoundaries();
     }
 
-    private void SetUpMoveBoundaries()
-    {
-        Camera cam = Camera.main;
-        _minX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + offset;
-        _maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - offset;
-        _minY = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + offset;
-        _maxY = cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - offset;
-        _screenHeightInUnits = cam.orthographicSize * 2;
-        _screenWidthInUnits = cam.orthographicSize;
-    }
-
     private void Update()
     {
-        EndTimeOfBonus(_bonusTime);
         Shoot();
-        if (isMovePlayerByAxis)
+        BonusTimer(_bonusTime);
+        if (_isMovePlayerByAxis)
         {
             MovePlayerByAxis();
         }
@@ -84,26 +68,124 @@ public class Player : MonoBehaviour
             MovePlayerByMousePos();
         }
     }
-    //=======================ÏÎËÍÀß ÕÓÉÍß ïåðåäåëàòü=====
-    private void EndTimeOfBonus(float _bonusTime)       //
+
+    private void BonusTimer(float value)
     {
-        _timeEndBonus += Time.deltaTime;                //
-        if (_timeEndBonus >= _bonusTime)
+        _bonusTimer += Time.deltaTime;
+        if (_bonusTimer >= value)
         {
-            _firstBulletOffset = new Vector3(0,0,0);    //
-            _secondBulletOffset = new Vector3(0,0,0);
-            _isDoubleShoot = false;                     //
-            _firePerSecond = _startFirePerSecond;
-            _bulletSpeed = _startBulletSpeed;
-            _lucky = _startLucky;
-            _timeEndBonus = 0;
+            SetShieldActive(false);
+            _bonusTimer = 0;
         }
     }
-    //====================================================
-    public int GetLucky()
+
+    // *** Getters ***
+
+    public float GetBulletSpeed()
     {
-        return _lucky;
+        return _bulletSpeed;
     }
+
+    public int GetHealth()
+    {
+        return _health;
+    }
+
+    // *** End getters ***
+
+    // *** Setters *** 
+
+    public void SetBonusTime(float value)
+    {
+        _bonusTime = value;
+    }
+
+    public void SetHealth(int value)
+    {
+        _health = value;
+        HealthUpdater();
+    }
+
+    public void SetBulletSpeed(float value)
+    {
+        _bulletSpeed = value;
+    }
+
+    public void SetDoubleShotActive(bool value)
+    { 
+        _isDoubleShoot = value;
+    }
+
+    public void SetShieldActive(bool value)
+    {
+        _isShieldActive = value;
+        SetPlayerSkin();
+    }
+
+    private void SetPlayerSkin()
+    {
+        if (_isShieldActive)
+        {
+            FindObjectOfType<Player>().GetComponent<SpriteRenderer>().sprite = _shieldedPlayerSkin;
+        }
+        if (!_isShieldActive)
+        {
+            FindObjectOfType<Player>().GetComponent<SpriteRenderer>().sprite = _commonPlayerSkin;
+        }
+    }
+    
+    public void SetBulletsOffset(Vector3 value01, Vector3 value02)
+    {
+        _firstBulletOffset = value01;
+        _secondBulletOffset = value02;
+    }
+    
+    private void SetUpMoveBoundaries()
+    {
+        Camera cam = Camera.main;
+        _minX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + _offset;
+        _maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - _offset;
+        _minY = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + _offset;
+        _maxY = cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - _offset;
+        _screenHeightInUnits = cam.orthographicSize * 2;
+        _screenWidthInUnits = cam.orthographicSize;
+    }
+
+    private float GetYPos()
+    {
+        return Input.mousePosition.y / Screen.height * _screenHeightInUnits;
+    }
+
+    private float GetXPos()
+    {
+        return Input.mousePosition.x / Screen.width * _screenWidthInUnits;
+    }
+    
+    private void GetDamage(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        if (!_isShieldActive)
+        {
+            _health -= damageDealer.GetDamage();
+            damageDealer.Hit();
+            HealthUpdater();
+            if (_health <= 0)
+            {
+                FindObjectOfType<SceneLoadManager>().LoadGameOverScene();
+                AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
+                Instantiate(_explosion, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            damageDealer.Hit();
+            return;
+        }
+    }
+
+    // *** End setters ***
 
     private void HealthUpdater()
     {
@@ -156,8 +238,8 @@ public class Player : MonoBehaviour
     {
         var playerPosition = new Vector2();
 
-        var deltaX = Input.GetAxis("Mouse X") * Time.deltaTime * speedPlayer;
-        var deltaY = Input.GetAxis("Mouse Y") * Time.deltaTime * speedPlayer;
+        var deltaX = Input.GetAxis("Mouse X") * Time.deltaTime * _speedPlayer;
+        var deltaY = Input.GetAxis("Mouse Y") * Time.deltaTime * _speedPlayer;
 
         playerPosition.x = Mathf.Clamp(transform.position.x + deltaX, _minX, _maxX);
         playerPosition.y = Mathf.Clamp(transform.position.y + deltaY, _minY, _maxY);
@@ -173,78 +255,8 @@ public class Player : MonoBehaviour
         transform.position = playerPosition;
     }
 
-    private float GetYPos()
-    {
-        return Input.mousePosition.y / Screen.height * _screenHeightInUnits;
-    }
-
-    private float GetXPos()
-    {
-        return Input.mousePosition.x / Screen.width * _screenWidthInUnits;
-    }
-   
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GetDamage(collision);
-        GetBonusHeart(collision);
-        GetBonusLucky(collision);
-        GetBonusSpeed(collision);
-        GetBonusDouble(collision);
-    }
-
-    private void GetBonusDouble(Collider2D collision)
-    {
-        BonusDouble bonusDouble = collision.gameObject.GetComponent<BonusDouble>();
-        if (!bonusDouble) { return; }
-        _isDoubleShoot = bonusDouble.SetActiveBonusDouble();
-        _firstBulletOffset = bonusDouble.GetFirstOffset();
-        _secondBulletOffset = bonusDouble.GetSecondOffset();
-        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
-        bonusDouble.Hit();
-    }
-
-    private void GetBonusSpeed(Collider2D collision)
-    {
-        BonusSpeed bonusSpeed = collision.gameObject.GetComponent<BonusSpeed>();
-        if (!bonusSpeed) { return; }
-        _bulletSpeed *= bonusSpeed.GetSpeed();
-        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
-        bonusSpeed.Hit();
-    }
-
-    private void GetBonusLucky(Collider2D collision)
-    {
-        BonusLucky bonusLucky = collision.gameObject.GetComponent<BonusLucky>();
-        if (!bonusLucky) { return; }
-        _lucky += bonusLucky.GetLucky();
-        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
-        bonusLucky.Hit();
-    }
-
-    private void GetBonusHeart(Collider2D collision)
-    {
-        BonusHeart bonusHeart = collision.gameObject.GetComponent<BonusHeart>();
-        if (!bonusHeart) { return; }
-        _health += bonusHeart.GetHealth();
-        bonusHeart.Hit();
-        AudioSource.PlayClipAtPoint(_getBonusSFX, transform.position, _volumeGetBonusSFX);
-        HealthUpdater();
-    }
-
-    private void GetDamage(Collider2D collision)
-    {
-        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
-        if (!damageDealer) { return; }
-        _health -= damageDealer.GetDamage();
-        damageDealer.Hit();
-        HealthUpdater();
-        if (_health <= 0)
-        {
-            FindObjectOfType<SceneLoadManager>().LoadGameOverScene();
-            AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
-            Instantiate(_explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
     }
 }

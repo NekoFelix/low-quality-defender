@@ -105,13 +105,19 @@ MonoBehaviour:
   _shotFrequency: 3.99
   _bulletSpeed: 3.4
   _bulletPrefab: {fileID: 8942744385409085121, guid: a3ae20e499bd26f4189c8c4f77ae75e6, type: 3}
+  _secondBulletPrefab: {fileID: 8942744385409085121, guid: a3ae20e499bd26f4189c8c4f77ae75e6, type: 3}
+  _bulletOffset: {x: 0, y: 0, z: 0}
+  _secondBulletOffset: {x: 0, y: 0, z: 0}
+  _isDoubleShot: 0
   health: 2
   _reward: 10
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 0.6
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}
   _bonusHeartPrefab: {fileID: 7216940344704259570, guid: 8e978796d25ad784cb0c6a90535fc37e, type: 3}
-  _bonusLuckyPrefab: {fileID: 6428102474630642750, guid: fc344c92c4d16a64c80a03879a4a0351, type: 3}
+  _bonusDoublePrefab: {fileID: 3402704180971957666, guid: 294ab46238fdbf945bcc364ff5950ca9, type: 3}
+  _bonusSpeedPrefab: {fileID: 1430141477810996309, guid: 2449c06a6ae07ef4084fccbdced1cb46, type: 3}
+  _bonusShieldPrefab: {fileID: 1683355336676313126, guid: e1fee0631aaa94c4fb1077587edaf063, type: 3}
 --- !u!70 &5697448166387148065
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
