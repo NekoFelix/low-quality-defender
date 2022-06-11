@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
+  _bonusSFX: {fileID: 8300000, guid: 4671a38478818f948b817d05aa6ce4a6, type: 3}
+  _volumeBonusSFX: 0.75

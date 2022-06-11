@@ -1159,7 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _health
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4553316192660040860, guid: 77b9541c6ca8b1c4ab96fe9c1d1f3f1d, type: 3}
       propertyPath: _bonusTime

@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            DropBonus();
+            DropBonus(FindObjectOfType<Player>().GetHealth());
             _scoreState.AddToScore(_reward);
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
@@ -123,10 +123,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //===========================œ≈–≈–¿¡Œ“¿“‹ œŒÀÕŒ—“‹ﬁ============
 
-    private void DropBonus()
+    private void DropBonus(int health)
     {
-
+        if (health <= 1)
+        {
+            Instantiate(_bonusHeartPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            int dropChance = UnityEngine.Random.Range(0,4);
+            if (dropChance == 0)
+            {
+                return;
+            }
+            if (dropChance == 1)
+            {
+                Instantiate(_bonusSpeedPrefab, transform.position, Quaternion.identity);
+            }
+            if (dropChance == 2)
+            {
+                Instantiate(_bonusShieldPrefab, transform.position, Quaternion.identity);
+            }
+            if (dropChance == 3)
+            {
+                Instantiate(_bonusDoublePrefab, transform.position, Quaternion.identity);
+            }
+        }
     }
 }
