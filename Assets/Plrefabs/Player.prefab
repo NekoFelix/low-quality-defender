@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 64827c27996d65a4caae324aa4a8958d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cafda8d8f04aa504ca90aa4356ff2982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.68367344, y: 0.64285713}
+    oldSize: {x: 0.875, y: 0.7734375}
     newSize: {x: 1.34, y: 1.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -111,22 +111,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.28392386, y: -0.17020535}
-      - {x: -0.33705282, y: -0.1708849}
-      - {x: -0.34287214, y: 0.095765054}
-      - {x: -0.29207683, y: 0.090937495}
-      - {x: -0.19978142, y: -0.0025595427}
-      - {x: -0.09423804, y: 0.027403355}
-      - {x: -0.0014664158, y: 0.32220364}
-      - {x: 0.09939551, y: 0.023090005}
-      - {x: 0.19843006, y: -0.013979673}
-      - {x: 0.2875142, y: 0.08932674}
-      - {x: 0.33863544, y: 0.09124732}
-      - {x: 0.34114408, y: -0.16735923}
-      - {x: 0.28833556, y: -0.16713089}
-      - {x: 0.15508659, y: -0.2774634}
-      - {x: -0.005289793, y: -0.3227058}
-      - {x: -0.16363665, y: -0.27686417}
+    - - {x: -0.3763404, y: -0.36295748}
+      - {x: -0.44327378, y: -0.15523884}
+      - {x: -0.25227213, y: 0.07165262}
+      - {x: -0.15365028, y: 0.07339993}
+      - {x: -0.04937949, y: 0.38544893}
+      - {x: 0.05611396, y: 0.3894121}
+      - {x: 0.1581831, y: 0.06843084}
+      - {x: 0.24918365, y: 0.07207805}
+      - {x: 0.43505383, y: -0.14819399}
+      - {x: 0.3841617, y: -0.36836585}
+      - {x: 0.15125354, y: -0.31196085}
+      - {x: 0.0034406185, y: -0.39255038}
+      - {x: -0.18109772, y: -0.29869062}
 --- !u!114 &4553316192660040860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,15 +136,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d843fd96042fbc74c8168b99142c1c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMovePlayerByAxis: 0
-  offset: 0.35
-  speedPlayer: 100
+  _isMovePlayerByAxis: 1
+  _offset: 0
+  _speedPlayer: 50
   _shootSFX: {fileID: 8300000, guid: 89391f9fc4a8a7745a5d23c5e06c9823, type: 3}
   _volumeShootSFX: 0.25
   _firePerSecond: 11.56
   _bulletSpeed: 21.12
   _bulletPrefab: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
-  health: 5
+  _secondBulletPrefab: {fileID: 0}
+  _healthImages: []
+  _fullHeart: {fileID: 21300000, guid: a8cc63c346078564ca282f0702d7bda6, type: 3}
+  _emptyHeart: {fileID: 21300000, guid: d0d38d24b96354b4b82a4abbb9ee85db, type: 3}
+  _heartSlots: 5
+  _health: 4
+  _commonPlayerSkin: {fileID: 21300000, guid: 64827c27996d65a4caae324aa4a8958d, type: 3}
+  _shieldedPlayerSkin: {fileID: 21300000, guid: 590dea12d83254541b3f20a0c5ff35ae, type: 3}
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 1
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}
