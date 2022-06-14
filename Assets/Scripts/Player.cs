@@ -41,10 +41,14 @@ public class Player : MonoBehaviour
     private float _maxX;
     private float _minY;
     private float _maxY;
-    
+
+    private float _nextLevelLoadingDelayTime;
+    private float _nextLevelLoadTimer = 3.5f;
     private float _bonusTimer = 0;
     private float _bonusTime;
     private float _timeToShoot;
+    private bool _activateBoundaries = true;
+    private bool _takeoverControl = true;
     private bool _isDoubleShoot = false;
     private Vector3 _firstBulletOffset;
     private Vector3 _secondBulletOffset;
@@ -57,6 +61,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        DragPlayerToNextLevel(_nextLevelLoadTimer);
         Shoot();
         BonusTimer(_bonusTime);
         if (_isMovePlayerByAxis)
@@ -68,6 +73,18 @@ public class Player : MonoBehaviour
             MovePlayerByMousePos();
         }
     }
+
+    private void DragPlayerToNextLevel(float value)
+    {
+        _nextLevelLoadingDelayTime += Time.deltaTime;
+        if(!FindObjectOfType<Enemy>() && _nextLevelLoadingDelayTime >= value)
+        {
+            _activateBoundaries = false;
+            _takeoverControl = false;
+            _nextLevelLoadingDelayTime = 0;
+        }
+    }
+
 
     private void BonusTimer(float value)
     {
@@ -142,13 +159,16 @@ public class Player : MonoBehaviour
     
     private void SetUpMoveBoundaries()
     {
-        Camera cam = Camera.main;
-        _minX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + _offset;
-        _maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - _offset;
-        _minY = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + _offset;
-        _maxY = cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - _offset;
-        _screenHeightInUnits = cam.orthographicSize * 2;
-        _screenWidthInUnits = cam.orthographicSize;
+        if (_activateBoundaries)
+        {
+            Camera cam = Camera.main;
+            _minX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + _offset;
+            _maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - _offset;
+            _minY = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + _offset;
+            _maxY = cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - _offset;
+            _screenHeightInUnits = cam.orthographicSize * 2;
+            _screenWidthInUnits = cam.orthographicSize;
+        }
     }
 
     private float GetYPos()
@@ -249,10 +269,23 @@ public class Player : MonoBehaviour
 
     private void MovePlayerByMousePos()
     {
-        Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
-        playerPosition.x = Mathf.Clamp(GetXPos(), _minX, _maxX);
-        playerPosition.y = Mathf.Clamp(GetYPos(), _minY, _maxY);
-        transform.position = playerPosition;
+        if (_takeoverControl)
+        {
+            Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
+            playerPosition.x = Mathf.Clamp(GetXPos(), _minX, _maxX);
+            playerPosition.y = Mathf.Clamp(GetYPos(), _minY, _maxY);
+            transform.position = playerPosition;
+        }
+        else 
+        {
+            DragAnimation(); 
+        }
+    }
+
+    private void DragAnimation()
+    {
+        Vector3 triggerPos = FindObjectOfType<NextSceneTrigger>().transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, triggerPos, _speedPlayer / 10 * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
