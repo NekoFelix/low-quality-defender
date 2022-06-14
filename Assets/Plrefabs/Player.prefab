@@ -111,19 +111,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.3763404, y: -0.36295748}
-      - {x: -0.44327378, y: -0.15523884}
-      - {x: -0.25227213, y: 0.07165262}
-      - {x: -0.15365028, y: 0.07339993}
-      - {x: -0.04937949, y: 0.38544893}
-      - {x: 0.05611396, y: 0.3894121}
-      - {x: 0.1581831, y: 0.06843084}
-      - {x: 0.24918365, y: 0.07207805}
-      - {x: 0.43505383, y: -0.14819399}
-      - {x: 0.3841617, y: -0.36836585}
-      - {x: 0.15125354, y: -0.31196085}
-      - {x: 0.0034406185, y: -0.39255038}
-      - {x: -0.18109772, y: -0.29869062}
+    - - {x: -0.369807, y: -0.35779256}
+      - {x: -0.4138956, y: -0.15958448}
+      - {x: -0.37225318, y: -0.04210022}
+      - {x: -0.24498296, y: 0.07202333}
+      - {x: -0.15990639, y: 0.07486516}
+      - {x: -0.051188372, y: 0.37192553}
+      - {x: 0.05361128, y: 0.3751925}
+      - {x: 0.15911388, y: 0.07055181}
+      - {x: 0.23911166, y: 0.0696435}
+      - {x: 0.36209702, y: -0.034978032}
+      - {x: 0.43129897, y: -0.14832187}
+      - {x: 0.3818257, y: -0.35494646}
+      - {x: 0.3357973, y: -0.27561504}
+      - {x: 0.19576795, y: -0.29102394}
+      - {x: 0.0060105324, y: -0.3566071}
+      - {x: -0.32410285, y: -0.28138435}
 --- !u!114 &4553316192660040860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,22 +139,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d843fd96042fbc74c8168b99142c1c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMovePlayerByAxis: 1
+  _isMovePlayerByAxis: 0
   _offset: 0
   _speedPlayer: 50
   _shootSFX: {fileID: 8300000, guid: 89391f9fc4a8a7745a5d23c5e06c9823, type: 3}
   _volumeShootSFX: 0.25
-  _firePerSecond: 11.56
-  _bulletSpeed: 21.12
+  _firePerSecond: 5
+  _bulletSpeed: 5
   _bulletPrefab: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
-  _secondBulletPrefab: {fileID: 0}
-  _healthImages: []
+  _secondBulletPrefab: {fileID: 5707791733100614101, guid: 257b9736bfec58144b6384f53f0ca5cb, type: 3}
+  _healthImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _fullHeart: {fileID: 21300000, guid: a8cc63c346078564ca282f0702d7bda6, type: 3}
   _emptyHeart: {fileID: 21300000, guid: d0d38d24b96354b4b82a4abbb9ee85db, type: 3}
   _heartSlots: 5
-  _health: 4
-  _commonPlayerSkin: {fileID: 21300000, guid: 64827c27996d65a4caae324aa4a8958d, type: 3}
-  _shieldedPlayerSkin: {fileID: 21300000, guid: 590dea12d83254541b3f20a0c5ff35ae, type: 3}
+  _health: 2
+  _commonPlayerSkin: {fileID: 21300000, guid: cafda8d8f04aa504ca90aa4356ff2982, type: 3}
+  _shieldedPlayerSkin: {fileID: 21300000, guid: 7568d07d6284278429e60e841238d468, type: 3}
   _explosionSFX: {fileID: 8300000, guid: 98a3330c84084cc42b27376c29a83005, type: 3}
   _volumeExplosionSFX: 1
   _explosion: {fileID: 1709018680952433454, guid: 5bb3756f39c78c148b99a4ef9e508fd0, type: 3}

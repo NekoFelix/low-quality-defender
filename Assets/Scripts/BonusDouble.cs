@@ -11,7 +11,7 @@ public class BonusDouble : MonoBehaviour
     {
         var player = collision.gameObject.GetComponent<Player>();
         if (!player) { return; }
-        player.SetBulletsOffset(new Vector3(-0.3f, 0, 0), new Vector3(0.3f, 0, 0));
+        player.SetBulletsOffset(new Vector3(-0.35f, 0, 0), new Vector3(0.35f, 0, 0));
         player.SetDoubleShotActive(true);
         AudioSource.PlayClipAtPoint(_bonusSFX, transform.position, _volumeBonusSFX);
         Destroy(gameObject);

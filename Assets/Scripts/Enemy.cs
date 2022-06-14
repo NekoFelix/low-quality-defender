@@ -99,7 +99,6 @@ public class Enemy : MonoBehaviour
         health = 0;
         if (health <= 0)
         {
-            //DropBonus(UnityEngine.Random.Range(0,2));
             _scoreState.AddToScore(_reward);
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);
@@ -115,7 +114,10 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            DropBonus(FindObjectOfType<Player>().GetHealth());
+            if (FindObjectOfType<Player>())
+            {
+                DropBonus(FindObjectOfType<Player>().GetHealth());
+            }
             _scoreState.AddToScore(_reward);
             AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
             Instantiate(_explosion, transform.position, Quaternion.identity);

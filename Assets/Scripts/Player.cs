@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
     {
         return Input.mousePosition.x / Screen.width * _screenWidthInUnits;
     }
-    
+
     private void GetDamage(Collider2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
