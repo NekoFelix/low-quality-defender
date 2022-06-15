@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreState : MonoBehaviour
+public class HealthState : MonoBehaviour
 {
-    private int _score = 0;
+    [SerializeField] private int _health = 2;
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class ScoreState : MonoBehaviour
 
     private void SetUpSingleton()
     {
-        if (FindObjectsOfType<ScoreState>().Length > 1)
+        if (FindObjectsOfType<HealthState>().Length > 1)
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
@@ -25,17 +25,17 @@ public class ScoreState : MonoBehaviour
         }
     }
 
-    public int GetScore()
+    public int GetHealth()
     {
-        return _score;
+        return _health;
     }
 
-    public void AddToScore(int _reward)
+    public void SetHealth(int value)
     {
-        _score += _reward;
+        _health = value;
     }
 
-    public void ResetScore()
+    public void ResetHealth()
     {
         Destroy(gameObject);
     }

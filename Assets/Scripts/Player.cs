@@ -22,7 +22,9 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite _fullHeart;
     [SerializeField] Sprite _emptyHeart;
     [SerializeField] private int _heartSlots = 5;
-    [SerializeField] private int _health = 4;
+    [SerializeField] private int _health;
+    HealthState _healthState;
+
 
     [Header("Player Skins")]
     [SerializeField] Sprite _commonPlayerSkin;
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _healthState = FindObjectOfType<HealthState>();
+        _health = _healthState.GetHealth();
         HealthUpdater();
         SetUpMoveBoundaries();
     }
@@ -120,6 +124,7 @@ public class Player : MonoBehaviour
     public void SetHealth(int value)
     {
         _health = value;
+        _healthState.SetHealth(_health);
         HealthUpdater();
     }
 
@@ -187,11 +192,11 @@ public class Player : MonoBehaviour
         if (!damageDealer) { return; }
         if (!_isShieldActive)
         {
-            _health -= damageDealer.GetDamage();
+            SetHealth(this._health - damageDealer.GetDamage());
             damageDealer.Hit();
-            HealthUpdater();
             if (_health <= 0)
             {
+                _healthState.ResetHealth();
                 FindObjectOfType<SceneLoadManager>().LoadGameOverScene();
                 AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
                 Instantiate(_explosion, transform.position, Quaternion.identity);
