@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [Header("Player Move")]
+    [SerializeField] private bool _isMovePlayerByTouch = true;
     [SerializeField] private bool _isMovePlayerByAxis = true;
     [SerializeField] private float _offset;
     [SerializeField] private float _speedPlayer = 50f;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
 
     private bool _isShieldActive;
 
+    private Touch touch;
     private float _screenHeightInUnits;
     private float _screenWidthInUnits;
     private float _minX;
@@ -67,10 +69,17 @@ public class Player : MonoBehaviour
     {
         DragPlayerToNextLevel(_nextLevelLoadTimer);
         Shoot();
+        ShootByTouch();
         BonusTimer(_bonusTime);
         if (_isMovePlayerByAxis)
         {
+            _isMovePlayerByTouch = false;
             MovePlayerByAxis();
+        }
+        else if (_isMovePlayerByTouch)
+        {
+            _isMovePlayerByAxis = false;
+            MovePlayerByTouch();
         }
         else
         {
@@ -88,7 +97,6 @@ public class Player : MonoBehaviour
             _nextLevelLoadingDelayTime = 0;
         }
     }
-
 
     private void BonusTimer(float value)
     {
@@ -256,6 +264,51 @@ public class Player : MonoBehaviour
             GameObject bullet = Instantiate(_bulletPrefab, transform.position + _firstBulletOffset, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
             _timeToShoot = 0f;
+        }
+    }
+
+    private void ShootByTouch()
+    {
+        _timeToShoot += Time.deltaTime;
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (_isDoubleShoot)
+                {
+                    AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
+                    GameObject secondBullet = Instantiate(_secondBulletPrefab, transform.position + _secondBulletOffset, Quaternion.identity) as GameObject;
+                    secondBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
+                }
+                AudioSource.PlayClipAtPoint(_shootSFX, transform.position, _volumeShootSFX);
+                GameObject bullet = Instantiate(_bulletPrefab, transform.position + _firstBulletOffset, Quaternion.identity) as GameObject;
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _bulletSpeed);
+                _timeToShoot = 0f;
+            }
+        }
+    }
+
+    // *** Move Player ***
+
+    private void MovePlayerByTouch()
+    {
+        if (_takeoverControl)
+        {
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    var playerPosition = new Vector2( transform.position.x + touch.deltaPosition.x, 
+                                                      transform.position.y + touch.deltaPosition.y);
+                    transform.position = playerPosition;
+                }
+            }
+        }
+        else 
+        {
+            DragAnimation();
         }
     }
 
