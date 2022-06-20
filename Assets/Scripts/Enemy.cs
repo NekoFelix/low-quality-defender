@@ -90,6 +90,21 @@ public class Enemy : MonoBehaviour
     {
         GetDamage(collision);
         GetPlayerCollision(collision);
+        GetNovaDamage(collision);
+    }
+
+    private void GetNovaDamage(Collider2D collision)
+    {
+        NovaParticleTriggers _novaParticles = collision.gameObject.GetComponent<NovaParticleTriggers>();
+        if (!_novaParticles) { return; }
+        health = 0;
+        if (health <= 0)
+        {
+            _scoreState.AddToScore(_reward);
+            AudioSource.PlayClipAtPoint(_explosionSFX, transform.position, _volumeExplosionSFX);
+            Instantiate(_explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     private void GetPlayerCollision(Collider2D collision)
