@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5334903331337761531}
   - component: {fileID: 3937418088063583336}
   - component: {fileID: 2262950399092133662}
-  - component: {fileID: 2536774800085331683}
+  - component: {fileID: 2432470009315188180}
   m_Layer: 11
   m_Name: NovaBonus
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a424217db8faf7a4891d305c50abff02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba076de75e7a337499aed96462bd417b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,11 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f64802829ec9464fb8e377c727cbda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _novaBurstParticle: {fileID: 8805999131952155657, guid: e4a9e686cf8fe2d4683dfc669a26389e, type: 3}
+  _numOfNovaWaves: 2
+  _novaFireBallsPrefab: {fileID: 3480301096966964228, guid: dccb2e5f525a3f84da7e2f1ac3730522, type: 3}
   _bonusSFX: {fileID: 8300000, guid: 4671a38478818f948b817d05aa6ce4a6, type: 3}
   _volumeBonusSFX: 0.75
---- !u!61 &2536774800085331683
-BoxCollider2D:
+--- !u!58 &2432470009315188180
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -136,16 +137,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00064766407, y: -0.0003876686}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.62933946, y: 0.63053703}
-  m_EdgeRadius: 0
+  m_Radius: 0.62

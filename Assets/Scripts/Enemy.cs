@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject _bonusDoublePrefab;
     [SerializeField] GameObject _bonusSpeedPrefab;
     [SerializeField] GameObject _bonusShieldPrefab;
+    [SerializeField] GameObject _bonusNovaPrefab;
 
     WaveConfig _waveConfig;
     ScoreState _scoreState;
@@ -149,7 +150,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            int dropChance = UnityEngine.Random.Range(0,4);
+            int dropChance = UnityEngine.Random.Range(0,5);
             if (dropChance == 0)
             {
                 return;
@@ -165,6 +166,10 @@ public class Enemy : MonoBehaviour
             if (dropChance == 3)
             {
                 Instantiate(_bonusDoublePrefab, transform.position, Quaternion.identity);
+            }
+            if (dropChance == 4)
+            {
+                Instantiate(_bonusNovaPrefab, transform.position, Quaternion.identity);
             }
         }
     }

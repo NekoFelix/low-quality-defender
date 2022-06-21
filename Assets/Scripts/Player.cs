@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     private float _maxY;
 
     private float _nextLevelLoadingDelayTime;
-    private float _nextLevelLoadTimer = 3.5f;
+    private float _nextLevelLoadTimer = 5f;
     private float _bonusTimer = 0;
     private float _bonusTime;
     private float _timeToShoot;
@@ -81,10 +81,14 @@ public class Player : MonoBehaviour
     private void DragPlayerToNextLevel(float value)
     {
         _nextLevelLoadingDelayTime += Time.deltaTime;
-        if(!FindObjectOfType<Enemy>() && _nextLevelLoadingDelayTime >= value)
+        if (!FindObjectOfType<Enemy>() && _nextLevelLoadingDelayTime >= value)
         {
             _activateBoundaries = false;
             _takeoverControl = false;
+            _nextLevelLoadingDelayTime = 0;
+        }
+        else 
+        {
             _nextLevelLoadingDelayTime = 0;
         }
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b1d2c347f835347802696979d81007, type: 3}
+  m_Name: New Wave Config 23
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 3487324855341548370, guid: aa2f87c85be47a54790040598c7380db, type: 3}
+  enemyPathPrefab: {fileID: 2450614287167248570, guid: 48a58da7199d03447935d19f772faaf3, type: 3}
+  countOfEnemys: 3
+  timeBtwSpawnEnemys: 1
+  enemySpeed: 3

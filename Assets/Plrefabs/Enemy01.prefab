@@ -134,6 +134,7 @@ MonoBehaviour:
   _bonusDoublePrefab: {fileID: 3402704180971957666, guid: 294ab46238fdbf945bcc364ff5950ca9, type: 3}
   _bonusSpeedPrefab: {fileID: 1430141477810996309, guid: 2449c06a6ae07ef4084fccbdced1cb46, type: 3}
   _bonusShieldPrefab: {fileID: 1683355336676313126, guid: e1fee0631aaa94c4fb1077587edaf063, type: 3}
+  _bonusNovaPrefab: {fileID: 2844579247678595660, guid: c8823bebf0dbdfa42b1fe796b6d7c3ff, type: 3}
 --- !u!50 &-7659959391771000177
 Rigidbody2D:
   serializedVersion: 4

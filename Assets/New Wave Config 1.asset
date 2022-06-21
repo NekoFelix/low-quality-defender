@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b1d2c347f835347802696979d81007, type: 3}
   m_Name: New Wave Config 1
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7559840216374303575, guid: 14f7f3c2e13b35441a4f5c837fa0575c, type: 3}
-  enemyPathPrefab: {fileID: 5075277216406989914, guid: c11246370f55077438f899d2ccc5547f, type: 3}
-  countOfEnemys: 5
+  enemyPrefab: {fileID: 3487324855341548370, guid: aa2f87c85be47a54790040598c7380db, type: 3}
+  enemyPathPrefab: {fileID: 5844851403433318590, guid: c98849200f505ea48a9657d3929c7e9e, type: 3}
+  countOfEnemys: 6
   timeBtwSpawnEnemys: 1
-  enemySpeed: 1.5
+  enemySpeed: 1

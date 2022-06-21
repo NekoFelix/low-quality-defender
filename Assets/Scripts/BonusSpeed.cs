@@ -12,7 +12,7 @@ public class BonusSpeed : MonoBehaviour
     {
         var player = collision.gameObject.GetComponent<Player>();
         if (!player) { return; }
-        player.SetBulletSpeed(player.GetBulletSpeed() * _speed);
+        player.SetBulletSpeed(player.GetBulletSpeed() + _speed);
         AudioSource.PlayClipAtPoint(_bonusSFX, transform.position, _volumeBonusSFX);
         Destroy(gameObject);
     }
