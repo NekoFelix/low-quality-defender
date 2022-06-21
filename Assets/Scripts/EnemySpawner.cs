@@ -8,9 +8,21 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private int _startingWave = 0;
 
+    private int _waveCounter;
+
     private void Start()
     {
         StartCoroutine(SpawnWaves());
+    }
+
+    public int GetCountWaves()
+    {
+        return waveConfigs.Count;
+    }
+
+    public int GetWaveCounter()
+    {
+        return _waveCounter;
     }
 
     private IEnumerator SpawnWaves()
@@ -18,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
         for (int waveIndex = _startingWave; waveIndex < waveConfigs.Count; waveIndex++)
         {
             var currentWave = waveConfigs[waveIndex];
+            _waveCounter++;
             yield return StartCoroutine( SpawnEnemyWave(currentWave));
         }
     }

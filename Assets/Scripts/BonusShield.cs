@@ -13,6 +13,7 @@ public class BonusShield : MonoBehaviour
         var player = collision.gameObject.GetComponent<Player>();
         if (!player) { return; }
         player.SetShieldActive(true);
+        player.RestartBonusTime();
         player.SetBonusTime(_bonusTime);
         AudioSource.PlayClipAtPoint(_bonusSFX, transform.position, _volumeBonusSFX);
         Destroy(gameObject);

@@ -1069,7 +1069,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8200312978341280400, guid: 954f628d2a8f9c44f90a4e7cc604692c, type: 3}
       propertyPath: waveConfigs.Array.size
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8200312978341280400, guid: 954f628d2a8f9c44f90a4e7cc604692c, type: 3}
       propertyPath: waveConfigs.Array.data[0]
