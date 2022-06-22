@@ -86,7 +86,6 @@ public class Player : MonoBehaviour
         {
             _activateBoundaries = false;
             _takeoverControl = false;
-            SetShieldActive(true);
             _nextLevelLoadingDelayTime = 0;
         }
     }
@@ -289,6 +288,7 @@ public class Player : MonoBehaviour
         }
         else 
         {
+            SetShieldActive(true);
             DragAnimation(); 
         }
     }

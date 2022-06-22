@@ -301,6 +301,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 445594880311133784, guid: ccea3d4138ddb144c9d246620347d02b, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445594880311133784, guid: ccea3d4138ddb144c9d246620347d02b, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445594880311133784, guid: ccea3d4138ddb144c9d246620347d02b, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 445594880311133787, guid: ccea3d4138ddb144c9d246620347d02b, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -849,10 +861,46 @@ PrefabInstance:
       propertyPath: m_fontColorGradient.bottomRight.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4526690678659383399, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678659383399, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678659383399, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 267.43994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678659383399, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -560
+      objectReference: {fileID: 0}
     - target: {fileID: 4526690678975770948, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1155067669}
+    - target: {fileID: 4526690678975770949, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678975770949, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678975770949, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 102.72998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526690678975770949, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551887804692194881, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7551887804692194883, guid: 167d7bffb57bc054590663ee5877cf74, type: 3}
       propertyPath: m_Name
       value: Game Complete Canvas
@@ -1021,6 +1069,10 @@ PrefabInstance:
     - target: {fileID: 4800640129937657291, guid: fbd5db9519569e24b97186ca3876379f, type: 3}
       propertyPath: m_fontColorGradient.bottomRight.r
       value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257015720025692520, guid: fbd5db9519569e24b97186ca3876379f, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7257015720025692522, guid: fbd5db9519569e24b97186ca3876379f, type: 3}
       propertyPath: m_Name
