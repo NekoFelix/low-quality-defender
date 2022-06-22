@@ -130,27 +130,45 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 1)
         {
+            //100% drop heart if health = 1
             Instantiate(_bonusHeartPrefab, transform.position, Quaternion.identity);
         }
         else
         {
+<<<<<<< Updated upstream
             int dropChance = UnityEngine.Random.Range(0,4);
             if (dropChance == 0)
+=======
+            int dropChance = UnityEngine.Random.Range(0,100);
+            if (dropChance <= 20)
+>>>>>>> Stashed changes
             {
                 return;
             }
-            if (dropChance == 1)
+            if (dropChance >= 21 && dropChance < 40)
             {
-                Instantiate(_bonusSpeedPrefab, transform.position, Quaternion.identity);
+                Instantiate(_bonusHeartPrefab, transform.position, Quaternion.identity);
             }
-            if (dropChance == 2)
+            if (dropChance >= 41 && dropChance < 60)
             {
                 Instantiate(_bonusShieldPrefab, transform.position, Quaternion.identity);
             }
-            if (dropChance == 3)
+            if (dropChance >= 61 && dropChance < 70)
             {
                 Instantiate(_bonusDoublePrefab, transform.position, Quaternion.identity);
             }
+<<<<<<< Updated upstream
+=======
+            if (dropChance >= 71 && dropChance < 95)
+            {
+                Instantiate(_bonusSpeedPrefab, transform.position, Quaternion.identity);
+            }
+            if (dropChance >= 95 && dropChance < 100)
+            {
+                Instantiate(_bonusNovaPrefab, transform.position, Quaternion.identity);
+            }
+            
+>>>>>>> Stashed changes
         }
     }
 }

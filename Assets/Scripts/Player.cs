@@ -336,6 +336,7 @@ public class Player : MonoBehaviour
         }
         else 
         {
+            SetShieldActive(true);
             DragAnimation(); 
         }
     }
